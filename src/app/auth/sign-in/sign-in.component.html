@@ -1,0 +1,78 @@
+<div class="sign-in">
+  <div class="sign-in__content">
+    <mat-card class="sign-in__card">
+      <mat-card-header>
+        <mat-card-title class="sign-in__title">Войти</mat-card-title>
+      </mat-card-header>
+
+      <mat-card-content class="sign-in__card-content">
+        <form [formGroup]="signInForm" class="sign-in__form">
+          <mat-form-field appearance="outline" class="sign-in__field">
+            <mat-label>Email</mat-label>
+            <input
+              matInput
+              type="email"
+              formControlName="email"
+              placeholder="Enter your email"
+            />
+            <mat-error *ngIf="signInForm.get('email')?.hasError('required')"
+              >Email обязателен</mat-error
+            >
+            <mat-error *ngIf="signInForm.get('email')?.hasError('email')"
+              >Пожалуйста, введите валидный email</mat-error
+            >
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="sign-in__field">
+            <mat-label>Пароль</mat-label>
+            <input
+              matInput
+              [type]="hidePassword ? 'password' : 'text'"
+              formControlName="password"
+            />
+            <button
+              mat-icon-button
+              matSuffix
+              (click)="hidePassword = !hidePassword"
+              type="button"
+              class="sign-in__visibility-toggle"
+            >
+              <mat-icon>{{
+                hidePassword ? "visibility_off" : "visibility"
+              }}</mat-icon>
+            </button>
+            <mat-error *ngIf="signInForm.get('password')?.hasError('required')"
+              >Пароль обязателен</mat-error
+            >
+          </mat-form-field>
+        </form>
+      </mat-card-content>
+
+      <mat-card-footer class="sign-in__footer">
+        <mat-card-actions align="end" class="sign-in__actions">
+          <button
+            mat-button
+            (click)="onCancel()"
+            class="sign-in__button sign-in__button--cancel"
+          >
+            Отмена
+          </button>
+          <button
+            mat-raised-button
+            color="primary"
+            [disabled]="signInForm.invalid"
+            (click)="onSubmit()"
+            class="sign-in__button sign-in__button--submit"
+          >
+            Войти
+          </button>
+        </mat-card-actions>
+      </mat-card-footer>
+    </mat-card>
+
+    <p class="sign-in__redirect">
+      Нет аккаунта?
+      <a routerLink="/auth/sign-up" class="sign-in__link">Присоединиться</a>
+    </p>
+  </div>
+</div>

@@ -1,0 +1,111 @@
+<div class="sign-up">
+  <div class="sign-up__content">
+    <mat-card class="sign-up__card">
+      <mat-card-header>
+        <mat-card-title class="sign-up__title">Создание аккаунта</mat-card-title>
+      </mat-card-header>
+
+      <mat-card-content class="sign-up__card-content">
+        <form [formGroup]="signUpForm" class="sign-up__form">
+          <mat-form-field appearance="outline" class="sign-up__field">
+            <mat-label>Полное имя</mat-label>
+            <input
+              matInput
+              formControlName="name"
+              placeholder="Введите ваше имя"
+            />
+            <mat-error *ngIf="signUpForm.get('name')?.hasError('required')"
+              >Это поле обязательно</mat-error
+            >
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="sign-up__field">
+            <mat-label>Email</mat-label>
+            <input
+              matInput
+              type="email"
+              formControlName="email"
+              placeholder="Enter your email"
+            />
+            <mat-error *ngIf="signUpForm.get('email')?.hasError('required')"
+              >Это поле обязательно</mat-error
+            >
+            <mat-error *ngIf="signUpForm.get('email')?.hasError('email')"
+              >Пожалуйста, введите валидный email</mat-error
+            >
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="sign-up__field">
+            <mat-label>Пароль</mat-label>
+            <input
+              matInput
+              [type]="hidePassword ? 'password' : 'text'"
+              formControlName="password"
+            />
+            <button
+              mat-icon-button
+              matSuffix
+              (click)="hidePassword = !hidePassword"
+              type="button"
+              class="sign-up__visibility-toggle"
+            >
+              <mat-icon>{{
+                hidePassword ? "visibility_off" : "visibility"
+              }}</mat-icon>
+            </button>
+            <mat-error *ngIf="signUpForm.get('password')?.hasError('required')"
+              >Пароль обязателен</mat-error
+            >
+            <mat-error *ngIf="signUpForm.get('password')?.hasError('minlength')"
+              >Пароль должен содержать не менее 8 символов</mat-error
+            >
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="sign-up__field">
+            <mat-label>Confirm Password</mat-label>
+            <input
+              matInput
+              [type]="hidePassword ? 'password' : 'text'"
+              formControlName="confirmPassword"
+            />
+            <mat-error
+              *ngIf="signUpForm.get('confirmPassword')?.hasError('required')"
+              >Please confirm your password</mat-error
+            >
+            <mat-error
+              *ngIf="
+                signUpForm.get('confirmPassword')?.hasError('passwordMismatch')
+              "
+              >Пароли не совпадают</mat-error
+            >
+          </mat-form-field>
+        </form>
+      </mat-card-content>
+
+      <mat-card-footer class="sign-up__footer">
+        <mat-card-actions align="end" class="sign-up__actions">
+          <a
+            routerLink="/"
+            mat-button
+            class="sign-up__button sign-up__button--cancel"
+            >Отмена</a
+          >
+          <button
+            mat-raised-button
+            color="primary"
+            [disabled]="signUpForm.invalid"
+            (click)="onSubmit()"
+            class="sign-up__button sign-up__button--submit"
+          >
+            Присоединиться
+          </button>
+        </mat-card-actions>
+      </mat-card-footer>
+    </mat-card>
+
+    <p class="sign-up__redirect">
+      Уже есть аккаунт?
+      <a routerLink="/auth/sign-in" class="sign-up__link">Войти</a>
+    </p>
+  </div>
+</div>

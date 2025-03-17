@@ -1,0 +1,37 @@
+@use '../../helpers.scss';
+
+.home {
+  @include helpers.center-global;
+  padding: 2rem;
+
+  &__card {
+    max-width: 1024px;
+    width: 100%;
+    padding: 2rem;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  }
+
+  &__header {
+    justify-content: center;
+  }
+
+  &__hero {
+    padding: 2rem;
+    text-align: center;
+
+    &-image {
+      max-width: 100%;
+      height: auto;
+      max-height: 300px;
+    }
+  }
+
+  &__actions {
+    justify-content: center;
+    padding: 1rem 0;
+  }
+
+  &__button {
+    margin-left: 1rem;
+  }
+}

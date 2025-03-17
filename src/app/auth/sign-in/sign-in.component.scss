@@ -1,0 +1,14 @@
+@use '../../../helpers.scss';
+
+.sign-in {
+  @include helpers.center-global;
+
+  &__form {
+    padding-top: 20px;
+  }
+
+  &__field {
+    width: 100%;
+    margin-bottom: 1rem;
+  }
+}

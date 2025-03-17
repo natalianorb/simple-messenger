@@ -1,0 +1,20 @@
+<div class="home">
+  <mat-card class="home__card">
+    <mat-card-header class="home__header">
+      <mat-card-title class="home__title">
+        Добро пожаловать в Simple Messenger!
+      </mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content>
+      <div class="home__hero">
+        <img class="home__hero-image" src="/public/logo.svg" alt="Изображение Simple Messenger">
+      </div>
+    </mat-card-content>
+
+    <mat-card-actions align="end" class="home__actions">
+      <a routerLink="/auth/sign-in" mat-raised-button color="primary" class="home__button home__button--primary">Войти</a>
+      <a routerLink="/auth/sign-up" mat-stroked-button color="accent" class="home__button home__button--secondary">Присоединиться</a>
+    </mat-card-actions>
+  </mat-card>
+</div>

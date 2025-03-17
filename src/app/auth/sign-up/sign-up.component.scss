@@ -1,0 +1,18 @@
+@use '../../../helpers.scss';
+
+.sign-up {
+  @include helpers.center-global;
+
+  &__content {
+    max-width: 768px;
+  }
+
+  &__form {
+    padding-top: 20px;
+  }
+
+  &__field {
+    width: 100%;
+    margin-bottom: 1rem;
+  }
+}
