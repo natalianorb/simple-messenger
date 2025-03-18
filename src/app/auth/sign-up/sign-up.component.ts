@@ -14,6 +14,13 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatCardModule } from '@angular/material/card';
+import { Store } from '@ngrx/store';
+import { AppState } from '../../store';
+import * as UserActions from '../../store/user/user.actions';
+import {
+  selectUserError,
+  selectUserLoading,
+} from '../../store/user/user.selectors';
 
 export interface SignUpData {
   name: string;
@@ -40,10 +47,13 @@ export interface SignUpData {
 export class SignUpComponent {
   signUpForm: FormGroup;
   hidePassword = true;
+  loading$;
+  error$;
 
   constructor(
     private fb: FormBuilder,
     private router: Router,
+    private store: Store<AppState>
   ) {
     this.signUpForm = this.fb.group(
       {
@@ -52,8 +62,10 @@ export class SignUpComponent {
         password: ['', [Validators.required, Validators.minLength(8)]],
         confirmPassword: ['', Validators.required],
       },
-      { validators: this.passwordMatchValidator },
+      { validators: this.passwordMatchValidator }
     );
+    this.loading$ = this.store.select(selectUserLoading);
+    this.error$ = this.store.select(selectUserError);
   }
 
   passwordMatchValidator(control: AbstractControl): ValidationErrors | null {
@@ -71,10 +83,7 @@ export class SignUpComponent {
   onSubmit(): void {
     if (this.signUpForm.valid) {
       const { name, email, password } = this.signUpForm.value;
-      // Implement sign up logic here
-      console.log('Sign up:', { name, email, password });
-      // Navigate to main app or sign-in after successful sign up
-      // this.router.navigate(['/auth/sign-in']);
+      this.store.dispatch(UserActions.signUp({ name, email, password }));
     }
   }
 
