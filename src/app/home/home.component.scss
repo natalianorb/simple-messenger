@@ -1,11 +1,11 @@
-@use '../../helpers.scss';
+@use "../../helpers.scss";
 
 .home {
   @include helpers.center-global;
   padding: 2rem;
 
   &__card {
-    max-width: 1024px;
+    max-width: 768px;
     width: 100%;
     padding: 2rem;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
@@ -20,7 +20,7 @@
     text-align: center;
 
     &-image {
-      max-width: 100%;
+      max-width: 450px;
       height: auto;
       max-height: 300px;
     }
